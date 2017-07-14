@@ -1,0 +1,6 @@
+#!/bin/sh
+eval $( perl -Mlocal::lib )
+
+export MOJO_HOME=$(pwd)
+
+exec millennial-title prefork -l 'http://*:6032' 2>&1
