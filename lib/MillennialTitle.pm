@@ -20,8 +20,7 @@ L<Mojolicious>
 =cut
 
 use Mojo::Base 'Mojolicious';
-use v5.24;
-use experimental qw( signatures );
+use v5.16;
 
 my @RANKS = qw<
     King Queen Knight Prince Princess Lord Lady Duke Duchess Empress
@@ -125,9 +124,11 @@ my %KILLED = (
 );
 my @KILLED = keys %KILLED;
 
-sub startup( $app ) {
-    push $app->renderer->classes->@*, __PACKAGE__;
-    $app->routes->get( '/' )->to( cb => sub( $c ) {
+sub startup {
+    my ( $app ) = @_;
+    push @{ $app->renderer->classes }, __PACKAGE__;
+    $app->routes->get( '/' )->to( cb => sub {
+        my ( $c ) = @_;
         my $killed = $KILLED[ int rand @KILLED ];
         $c->render(
             template => 'index',
@@ -135,7 +136,7 @@ sub startup( $app ) {
             object => $OBJECTS[ int rand @OBJECTS ],
             action => $ACTIONS[ int rand @ACTIONS ],
             killed => $killed,
-            killed_source => $KILLED{ $killed }[ int rand $KILLED{ $killed }->@* ],
+            killed_source => $KILLED{ $killed }[ int rand @{ $KILLED{ $killed } } ],
         );
     } );
 }
