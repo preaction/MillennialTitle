@@ -53,7 +53,7 @@ desc "Deploy the web app from CPAN";
 task deploy =>
     group => 'web',
     sub {
-        run 'source ~/.profile; cpanm MillennialTitle';
+        run '. ~/.profile; cpanm MillennialTitle';
         run_task 'deploy_config', on => connection->server;
     };
 
@@ -85,7 +85,7 @@ task deploy_dev =>
             source => $dist;
 
         Rex::Logger::info( 'Installing ' . $dist );
-        run 'source ~/.profile; cpanm -v --with-recommends ~/dist/' . $dist;
+        run '. ~/.profile; cpanm -v --with-recommends ~/dist/' . $dist;
         if ( $? ) {
             say last_command_output;
         }
