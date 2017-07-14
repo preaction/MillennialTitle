@@ -1,0 +1,37 @@
+# NAME
+
+MillennialTitle - Establish your nobility and status as a Millennial
+
+# VERSION
+
+version 0.001
+
+# STATUS
+
+<a href="https://travis-ci.org/preaction/MillenialTitle"><img src="https://travis-ci.org/preaction/MillenialTitle.svg?branch=master"></a><a href="https://coveralls.io/r/preaction/MillenialTitle"><img src="https://coveralls.io/repos/preaction/MillenialTitle/badge.png" alt="Coverage Status" /></a>
+
+# SYNOPSIS
+
+    perl bin/millennial-title daemon
+
+# DESCRIPTION
+
+This web application generates flowery, honorific titles for
+Millennials.  Since Millennials have been accused of destroying the
+modern world, a sample accomplishment is also included, with a link to
+the history of their nefarious deed...
+
+# SEE ALSO
+
+[Mojolicious](https://metacpan.org/pod/Mojolicious)
+
+# AUTHOR
+
+Doug Bell <preaction@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2017 by Doug Bell.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
