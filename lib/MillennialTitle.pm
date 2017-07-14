@@ -145,6 +145,7 @@ sub startup {
 __DATA__
 
 @@ index.html.ep
+<title>Millennial Title Generator</title>
 <style>
 body {
     text-align: center;
