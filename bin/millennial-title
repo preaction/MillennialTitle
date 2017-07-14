@@ -4,21 +4,21 @@ our $VERSION = '0.001';
 
 =head1 NAME
 
-millenial-title -- Start the web application
+millennial-title -- Start the web application
 
 =head1 SYNOPSIS
 
-  millenial-title daemon
-  millenial-title help
+  millennial-title daemon
+  millennial-title help
 
 =head1 DESCRIPTION
 
 This program loads the web application, a L<Mojolicious> web
-application. For more detailed help, see C<millenial-title help>.
+application. For more detailed help, see C<millennial-title help>.
 
 =head1 SEE ALSO
 
-L<MillenialTitle>, L<Mojolicious>
+L<MillennialTitle>, L<Mojolicious>
 
 =cut
 
@@ -29,4 +29,4 @@ use FindBin ();
 use lib "$FindBin::Bin/../lib";
 
 require Mojolicious::Commands;
-Mojolicious::Commands->start_app( 'MillenialTitle' );
+Mojolicious::Commands->start_app( 'MillennialTitle' );

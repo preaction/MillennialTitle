@@ -1,10 +1,10 @@
-package MillenialTitle;
+package MillennialTitle;
 our $VERSION = '0.001';
-# ABSTRACT: Establish your nobility and status as a Millenial
+# ABSTRACT: Establish your nobility and status as a Millennial
 
 =head1 SYNOPSIS
 
-    perl bin/millenial-title daemon
+    perl bin/millennial-title daemon
 
 =head1 DESCRIPTION
 
@@ -151,8 +151,8 @@ body {
     margin: 0 auto;
 }
 </style>
-<h1>Millenial Title Generator</h1>
-<p>Millenials have been accused of destroying modern civilization. As
+<h1>Millennial Title Generator</h1>
+<p>Millennials have been accused of destroying modern civilization. As
 a reward, here's an honorific title, and a description of your
 accomplishment along with a link to the news report of your deed. Wear it
 proudly!</p>
