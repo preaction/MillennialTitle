@@ -155,8 +155,8 @@ body {
 </style>
 <h1>Millennial Title Generator</h1>
 <p>Millennials have been accused of destroying modern civilization. As
-a reward, here's an honorific title, and a description of your
-accomplishment along with a link to the news report of your deed. Wear it
+a reward for a job well done, here's an honorific title, and a description of your
+accomplishment along with a link to the news report of your heroic deed. Wear it
 proudly!</p>
 
 <h2>You Are...</h2>
