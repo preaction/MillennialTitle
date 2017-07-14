@@ -55,7 +55,17 @@
       }
    },
    "release_status" : "stable",
-   "resources" : {},
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/preaction/MillennialTitle/issues"
+      },
+      "homepage" : "https://github.com/preaction/MillennialTitle",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/preaction/MillennialTitle.git",
+         "web" : "https://github.com/preaction/MillennialTitle"
+      }
+   },
    "version" : "0.001",
    "x_authority" : "cpan:PREACTION",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0216"
