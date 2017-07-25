@@ -121,6 +121,9 @@ my %KILLED = (
     'The London Nightlife' => [qw<
         http://www.huffingtonpost.co.uk/vincent-dignan/how-technology-millennial_b_12727384.html
     >],
+    'Beer' => [qw<
+        http://www.businessinsider.com/millennials-are-killing-beer-2017-7
+    >],
 );
 my @KILLED = keys %KILLED;
 
