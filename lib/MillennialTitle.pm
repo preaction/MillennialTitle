@@ -136,14 +136,14 @@ sub startup {
     );
     $app->asset->process(
         'prereq.css' => (
-            'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css',
+            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css',
+            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css',
         ),
     );
     $app->asset->process(
         'prereq.js' => (
-            'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js',
+            'http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js',
         ),
     );
 
