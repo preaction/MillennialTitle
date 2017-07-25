@@ -142,6 +142,13 @@ sub startup {
             killed_source => $KILLED{ $killed }[ int rand @{ $KILLED{ $killed } } ],
         );
     } );
+    $app->routes->get( '/list' )->to( cb => sub {
+        my ( $c ) = @_;
+        $c->render(
+            template => 'list',
+            killed => \%KILLED,
+        );
+    } );
 }
 
 1;
@@ -164,5 +171,27 @@ proudly!</p>
 
 <h2>You Are...</h2>
 <h3><%= $rank %> <%= $object %></h3>
-<h3><a href="<%= $killed_source %>"><%= $action %> of <%= $killed %></a></h3>
+<h3><a rel="nofollow" href="<%= $killed_source %>"><%= $action %> of <%= $killed %></a></h3>
 <button onclick="location.reload()">Get another</button>
+
+<p>
+    <a href="/list">See all of Millennial's accomplishments</a>
+</p>
+
+@@ list.html.ep
+<title>Millennial Accomplishments</title>
+<h1>Millennial Accomplishments</h1>
+<p>These are all the things millennials have been accused of killing.
+<a href="/">Get a personal title and accomplishment</a>.</p>
+
+<ul>
+    % my %killed = %{ stash 'killed' };
+    % for my $killed ( sort keys %killed ) {
+    <li><%= $killed %>:
+        <a href="<%= $killed{ $killed }[0] %>">
+            <%= $killed{ $killed }[0] %>
+        </a>
+    </li>
+    % }
+</ul>
+
