@@ -118,7 +118,7 @@ my %KILLED = (
     'Casinos' => [qw<
         http://knockoutmag.com/12623/gambling/will-millennials-kill-gambling/
     >],
-    'The London Nightlife' => [qw<
+    'London Nightlife' => [qw<
         http://www.huffingtonpost.co.uk/vincent-dignan/how-technology-millennial_b_12727384.html
     >],
     'Beer' => [qw<
