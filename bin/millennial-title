@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# PODNAME: millenial-title
+# PODNAME: millennial-title
 our $VERSION = '0.001';
 
 =head1 NAME
