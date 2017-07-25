@@ -2,5 +2,6 @@
 eval $( perl -Mlocal::lib )
 
 export MOJO_HOME=$(pwd)
+export MOJO_REVERSE_PROXY=/title
 
 exec millennial-title prefork -l 'http://*:6032' 2>&1

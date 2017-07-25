@@ -131,6 +131,13 @@ sub startup {
     my ( $app ) = @_;
     push @{ $app->renderer->classes }, __PACKAGE__;
 
+    if ( $ENV{MOJO_REVERSE_PROXY} ) {
+        $app->hook(before_dispatch => sub {
+            my ( $c ) = @_;
+            $c->req->url->base->path( $ENV{MOJO_REVERSE_PROXY} . '/' );
+        });
+    }
+
     $app->plugin( 'AssetPack',
         pipes => [qw< Css JavaScript >],
     );
@@ -147,7 +154,7 @@ sub startup {
         ),
     );
 
-    $app->routes->get( '/' )->to( cb => sub {
+    $app->routes->get( '/' )->name( 'index' )->to( cb => sub {
         my ( $c ) = @_;
         my $killed = $KILLED[ int rand @KILLED ];
         $c->render(
@@ -159,7 +166,7 @@ sub startup {
             killed_source => $KILLED{ $killed }[ int rand @{ $KILLED{ $killed } } ],
         );
     } );
-    $app->routes->get( '/list' )->to( cb => sub {
+    $app->routes->get( '/list' )->name( 'list' )->to( cb => sub {
         my ( $c ) = @_;
         $c->render(
             template => 'list',
@@ -195,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
     </p>
 
     <p class="text-center">
-        <a href="/list">See all of Millennial's accomplishments</a>
+        <a href="<%= url_for 'list' %>">See all of Millennial's accomplishments</a>
     </p>
 </div>
 
@@ -211,7 +218,7 @@ h1, h2, h3, h4, h5, h6 {
 <div class="container">
     <h1>Millennial Accomplishments</h1>
     <p>These are all the things millennials have been accused of killing.
-    <a href="/">Get a personal title and accomplishment</a>.</p>
+    <a href="<%= url_for 'index' %>">Get a personal title and accomplishment</a>.</p>
 
     <dl>
         % my %killed = %{ stash 'killed' };
