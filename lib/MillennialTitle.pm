@@ -124,6 +124,9 @@ my %KILLED = (
     'Beer' => [qw<
         http://www.businessinsider.com/millennials-are-killing-beer-2017-7
     >],
+    'Fossil Fuels' => [qw<
+        http://inthesetimes.com/article/20372/oil-industry-millennials-climate-change-socialism-capitalism
+    >],
 );
 my @KILLED = keys %KILLED;
 
