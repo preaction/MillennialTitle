@@ -20,7 +20,12 @@ L<Mojolicious>
 =cut
 
 use Mojo::Base 'Mojolicious';
+use List::Util qw( uniq );
 use v5.16;
+
+my @MALE_RANKS = qw< King Knight Prince Lord Duke Emperor Marquis Count Baron >;
+my @FEMALE_RANKS = qw< Queen Princess Knight Lady Duchess Empress Marquess Countess Baroness >;
+my @ALL_RANKS = uniq @MALE_RANKS, @FEMALE_RANKS;
 
 my @RANKS = qw<
     King Queen Knight Prince Princess Lord Lady Duke Duchess Empress
@@ -160,9 +165,12 @@ sub startup {
     $app->routes->get( '/' )->name( 'index' )->to( cb => sub {
         my ( $c ) = @_;
         my $killed = $KILLED[ int rand @KILLED ];
+        my $gender = $c->param( 'gender' );
+        my @ranks = $gender eq 'male' ? @MALE_RANKS : $gender eq 'female' ? @FEMALE_RANKS : @ALL_RANKS;
+
         $c->render(
             template => 'index',
-            rank => $RANKS[ int rand @RANKS ],
+            rank => $ranks[ int rand @ranks ],
             object => $OBJECTS[ int rand @OBJECTS ],
             action => $ACTIONS[ int rand @ACTIONS ],
             killed => $killed,
@@ -197,12 +205,26 @@ h1, h2, h3, h4, h5, h6 {
     accomplishment along with a link to the news report of your heroic deed. Wear it
     proudly!</p>
 
-    <h2>You Are...</h2>
+    <h2 style="margin-top: 2em">You Are...</h2>
     <h3><%= $rank %> <%= $object %></h3>
     <h3><a rel="nofollow" href="<%= $killed_source %>"><%= $action %> of <%= $killed %></a></h3>
-    <p class="text-center">
-        <button class="btn btn-primary" onclick="location.reload()">Get another</button>
-    </p>
+
+    <form style="margin-top: 4em" class="form form-inline text-center" action="<%= url_for 'index' %>" method="GET">
+        <button class="btn btn-primary">Get another</button>
+        <select class="form-control" name="gender">
+            <option value="">All Titles</option>
+            <option value="male"
+                <%= param( 'gender' ) eq 'male' ? 'selected' : '' %>
+            >
+                Male Titles
+            </option>
+            <option value="female"
+                <%= param( 'gender' ) eq 'female' ? 'selected' : '' %>
+            >
+                Female Titles
+            </option>
+        </select>
+    </form>
 
     <p class="text-center">
         <a href="<%= url_for 'list' %>">See all of Millennial's accomplishments</a>
