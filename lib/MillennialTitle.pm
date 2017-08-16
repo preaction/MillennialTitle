@@ -192,8 +192,8 @@ sub startup {
 1;
 __DATA__
 
-@@ index.html.ep
-<title>Millennial Title Generator</title>
+@@ layouts/default.html.ep
+<title><%= title %></title>
 %= asset 'prereq.css'
 %= asset 'prereq.js'
 <style>
@@ -202,61 +202,63 @@ h1, h2, h3, h4, h5, h6 {
 }
 </style>
 <div class="container">
-    <h1>Millennial Title Generator</h1>
-    <p>Millennials have been accused of destroying modern civilization. As
-    a reward for a job well done, here's an honorific title, and a description of your
-    accomplishment along with a link to the news report of your heroic deed. Wear it
-    proudly!</p>
-
-    <h2 style="margin-top: 2em">You Are...</h2>
-    <h3><%= $rank %> <%= $object %></h3>
-    <h3><a rel="nofollow" href="<%= $killed_source %>"><%= $action %> of <%= $killed %></a></h3>
-
-    <form style="margin-top: 4em" class="form form-inline text-center" action="<%= url_for 'index' %>" method="GET">
-        <button class="btn btn-primary">Get another</button>
-        <select class="form-control" name="gender">
-            <option value="">All Titles</option>
-            <option value="male"
-                <%= param( 'gender' ) eq 'male' ? 'selected' : '' %>
-            >
-                Male Titles
-            </option>
-            <option value="female"
-                <%= param( 'gender' ) eq 'female' ? 'selected' : '' %>
-            >
-                Female Titles
-            </option>
-        </select>
-    </form>
-
-    <p class="text-center">
-        <a href="<%= url_for 'list' %>">See all of Millennial's accomplishments</a>
-    </p>
+    %= content
 </div>
+<p class="text-center"><small>
+    Made by <a href="http://preaction.me">preaction</a><br/>
+    Made with <a href="http://perl.org">Perl</a> and <a href="http://mojolicious.org">Mojolicious</a>
+</small></p>
+
+@@ index.html.ep
+% layout 'default';
+% title 'Millennial Title Generator';
+<h1>Millennial Title Generator</h1>
+<p>Millennials have been accused of destroying modern civilization. As
+a reward for a job well done, here's an honorific title, and a description of your
+accomplishment along with a link to the news report of your heroic deed. Wear it
+proudly!</p>
+
+<h2 style="margin-top: 2em">You Are...</h2>
+<h3><%= $rank %> <%= $object %></h3>
+<h3><a rel="nofollow" href="<%= $killed_source %>"><%= $action %> of <%= $killed %></a></h3>
+
+<form style="margin-top: 4em" class="form form-inline text-center" action="<%= url_for 'index' %>" method="GET">
+    <button class="btn btn-primary">Get another</button>
+    <select class="form-control" name="gender">
+        <option value="">All Titles</option>
+        <option value="male"
+            <%= param( 'gender' ) eq 'male' ? 'selected' : '' %>
+        >
+            Male Titles
+        </option>
+        <option value="female"
+            <%= param( 'gender' ) eq 'female' ? 'selected' : '' %>
+        >
+            Female Titles
+        </option>
+    </select>
+</form>
+
+<p class="text-center">
+    <a href="<%= url_for 'list' %>">See all of Millennial's accomplishments</a>
+</p>
 
 @@ list.html.ep
-<title>Millennial Accomplishments</title>
-%= asset 'prereq.css'
-%= asset 'prereq.js'
-<style>
-h1, h2, h3, h4, h5, h6 {
-    text-align: center;
-}
-</style>
-<div class="container">
-    <h1>Millennial Accomplishments</h1>
-    <p>These are all the things millennials have been accused of killing.
-    <a href="<%= url_for 'index' %>">Get a personal title and accomplishment</a>.</p>
+% layout 'default';
+% title 'Millennial Accomplishments';
 
-    <dl>
-        % my %killed = %{ stash 'killed' };
-        % for my $killed ( sort keys %killed ) {
-        <dt><%= $killed %></dt>
-        <dd>
-            <a href="<%= $killed{ $killed }[0] %>">
-                <%= $killed{ $killed }[0] %>
-            </a>
-        </dd>
-        % }
-    </ul>
-</div>
+<h1>Millennial Accomplishments</h1>
+<p>These are all the things millennials have been accused of killing.
+<a href="<%= url_for 'index' %>">Get a personal title and accomplishment</a>.</p>
+
+<dl>
+    % my %killed = %{ stash 'killed' };
+    % for my $killed ( sort keys %killed ) {
+    <dt><%= $killed %></dt>
+    <dd>
+        <a href="<%= $killed{ $killed }[0] %>">
+            <%= $killed{ $killed }[0] %>
+        </a>
+    </dd>
+    % }
+</ul>
