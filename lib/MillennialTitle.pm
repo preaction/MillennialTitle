@@ -284,10 +284,8 @@ proudly!</p>
     % my %killed = %{ stash 'killed' };
     % for my $killed ( sort keys %killed ) {
     <dt><%= $killed %></dt>
-    <dd>
-        <a href="<%= $killed{ $killed }[0] %>">
-            <%= $killed{ $killed }[0] %>
-        </a>
-    </dd>
+        % for my $url ( @{ $killed{ $killed } } ) {
+        <dd><a href="<%= $url %>"><%= $url %></a></dd>
+        % }
     % }
 </ul>
