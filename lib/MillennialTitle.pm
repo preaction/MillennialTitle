@@ -75,6 +75,7 @@ my %KILLED = (
     >],
     'Workdays' => [qw<
         http://www.digitalistmag.com/future-of-work/2016/05/12/did-millennials-kill-9-to-5-workday-or-point-out-its-dead-04174167
+        https://www.entrepreneur.com/article/270786
     >],
     'Bar Soap' => [qw<
         http://www.cbsnews.com/news/blame-millennials-for-the-vanishing-bar-of-soap/
@@ -84,6 +85,7 @@ my %KILLED = (
     >],
     'Running' => [qw<
         http://sportschatter.com/sports-talk/slideshow/millennials-ruining-sport-running/
+        https://www.wsj.com/articles/how-millennials-ended-the-running-boom-1462473195
     >],
     'Retail Shopping' => [qw<
         http://www.businessinsider.com/millennial-consumer-habits-robin-lewis-2016-6
@@ -163,6 +165,27 @@ my %KILLED = (
     >],
     'the NFL' => [qw<
         https://www.csmonitor.com/Commentary/Opinion/2012/1019/Millennial-generation-could-kill-the-NFL
+    >],
+    'Manners' => [qw<
+        http://www.readunwritten.com/2014/07/16/please-and-thank-you-why-manners-mean-more-than-you-think/
+    >],
+    'Suits' => [qw<
+        http://newbostonpost.com/blogs/millennials-killed-the-suit-but-created-a-culture/
+    >],
+    'the American Dream' => [qw<
+        http://redalertpolitics.com/2015/12/11/poll-millennials-say-american-dream-dead-killed/
+    >],
+    'Canadian Tourism' => [qw<
+        http://notable.ca/millennials-wanderlust-is-killing-the-canadian-tourism-industry/
+    >],
+    'Democracy' => [qw<
+        https://medium.com/@TazBunnett/the-death-throes-of-democracy-murdered-by-millennials-135c28ed2be5
+    >],
+    'the European Union' => [qw<
+        http://nationalinterest.org/feature/how-europes-millennials-killed-the-eu-16905
+    >],
+    'Banks' => [qw<
+        https://techcrunch.com/2015/05/30/millennial-banks/
     >],
 );
 my @KILLED = keys %KILLED;
