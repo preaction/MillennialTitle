@@ -19,6 +19,7 @@ L<Mojolicious>
 
 =cut
 
+use utf8;
 use Mojo::Base 'Mojolicious';
 use List::Util qw( uniq );
 use v5.16;
@@ -35,7 +36,7 @@ my @RANKS = qw<
 my @OBJECTS = qw<
     Netflix Instagram Tinder Snapchat Uber Emoji Facebook Smartphone
     WiFi Meme Twitter Selfie Nostalgia Quinoa Organic Vape
-    Hashtag Vintage
+    Hashtag Vintage Rosé
 >;
 
 my @ACTIONS = qw<
@@ -116,6 +117,7 @@ my %KILLED = (
     >],
     'Fabric Softener' => [qw<
         https://consumerist.com/2016/12/16/fabric-softener-apparently-latest-victim-of-millennials-killing-spree/
+        https://www.wsj.com/articles/fabric-softener-sales-are-losing-their-bounce-1481889602?mg=prod/accounts-wsj
     >],
     'Department Stores' => [qw<
         https://www.usatoday.com/videos/money/2017/02/24/millennials-killing-department-stores/98187754/
@@ -128,12 +130,39 @@ my %KILLED = (
     >],
     'Beer' => [qw<
         http://www.businessinsider.com/millennials-are-killing-beer-2017-7
+        http://www.businessinsider.com/millennials-killing-beer-with-rose-obsession-2017-8
     >],
     'Fossil Fuels' => [qw<
         http://inthesetimes.com/article/20372/oil-industry-millennials-climate-change-socialism-capitalism
+        http://www.businessinsider.com/why-millennials-wont-work-in-oil-2017-7
     >],
     'Marmalade' => [qw<
         http://metro.co.uk/2017/02/28/now-millennials-are-killing-marmalade-6478579/
+    >],
+    'Hooters' => [qw<
+        http://www.businessinsider.com/hooters-business-strategy-shifts-2017-8
+    >],
+    'Motorcycles' => [qw<
+        http://www.businessinsider.com/millennials-are-hurting-harley-davidson-sales-2017-7
+    >],
+    'Light Yogurt' => [qw<
+        http://www.businessinsider.com/millennials-are-killing-light-yogurt-2016-9
+    >],
+    'Diamonds' => [qw<
+        https://www.cnbc.com/2017/05/20/millennial-couples-arent-buying-diamonds.html
+        https://www.cnbc.com/2016/06/16/blame-millennials-diamond-jewelry-business-in-a-rough-spot.html
+    >],
+    'Designer Handbags' => [qw<
+        http://www.businessinsider.com/the-death-of-designer-handbags-2015-8
+    >],
+    'Gyms' => [qw<
+        http://nypost.com/2016/10/17/millennials-are-killing-gyms-too/
+    >],
+    'Home Depot' => [qw<
+        https://www.forbes.com/sites/jefffromm/2014/10/02/will-the-millennial-generation-kill-home-depot/
+    >],
+    'the NFL' => [qw<
+        https://www.csmonitor.com/Commentary/Opinion/2012/1019/Millennial-generation-could-kill-the-NFL
     >],
 );
 my @KILLED = keys %KILLED;
