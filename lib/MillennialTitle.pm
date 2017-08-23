@@ -298,13 +298,14 @@ proudly!</p>
 @@ list.html.ep
 % layout 'default';
 % title 'Millennial Accomplishments';
+% my %killed = %{ stash 'killed' };
 
 <h1>Millennial Accomplishments</h1>
 <p>These are all the things millennials have been accused of killing.
 <a href="<%= url_for 'index' %>">Get a personal title and accomplishment</a>.</p>
 
+<h2>Kill Count: <%= scalar keys %killed %></h2>
 <dl>
-    % my %killed = %{ stash 'killed' };
     % for my $killed ( sort keys %killed ) {
     <dt><%= $killed %></dt>
         % for my $url ( @{ $killed{ $killed } } ) {
