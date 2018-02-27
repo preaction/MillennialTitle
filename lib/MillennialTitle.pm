@@ -187,6 +187,9 @@ my %KILLED = (
     'Banks' => [qw<
         https://techcrunch.com/2015/05/30/millennial-banks/
     >],
+    'Credit Cards' => [qw<
+        http://business.financialpost.com/personal-finance/debt/millennials-are-ditching-credit-cards-and-its-threatening-the-entire-industry
+    >],
 );
 my @KILLED = keys %KILLED;
 
