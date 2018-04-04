@@ -105,15 +105,12 @@ task deploy_config =>
     group => 'web',
     sub {
         Rex::Logger::info( 'Deploying service config' );
-        file '~/service/millennial-title/log/main',
-            ensure => 'directory';
-        file '~/service/millennial-title/run',
-            source => 'etc/runit/millennial-title/run';
-        file '~/service/millennial-title/log/run',
-            source => 'etc/runit/millennial-title/log/run';
+        file '~/.config/systemd/user/millennial-title.service',
+            source => 'etc/millennial-title.service';
 
         Rex::Logger::info( 'Restarting' );
-        run 'sv restart ~/service/millennial-title';
+        run 'systemctl --user enable millennial-title.service';
+        run 'systemctl --user restart millennial-title.service';
     };
 
 #######################################################################

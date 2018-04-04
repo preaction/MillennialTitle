@@ -4,7 +4,7 @@
       "Doug Bell <preaction@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Dist::Zilla version 6.010, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -31,8 +31,10 @@
       },
       "runtime" : {
          "requires" : {
+            "List::Util" : "1.45",
             "Mojolicious" : "7",
-            "perl" : "5.010"
+            "Mojolicious::Plugin::AssetPack" : "1.45",
+            "perl" : "5.016"
          }
       },
       "test" : {
@@ -68,6 +70,6 @@
    },
    "version" : "0.001",
    "x_authority" : "cpan:PREACTION",
-   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0216"
+   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0233"
 }
 

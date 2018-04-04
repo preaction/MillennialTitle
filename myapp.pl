@@ -1,26 +1,6 @@
-package MillennialTitle;
-our $VERSION = '0.001';
-# ABSTRACT: Establish your nobility and status as a Millennial
-
-=head1 SYNOPSIS
-
-    perl bin/millennial-title daemon
-
-=head1 DESCRIPTION
-
-This web application generates flowery, honorific titles for
-Millennials.  Since Millennials have been accused of destroying the
-modern world, a sample accomplishment is also included, with a link to
-the history of their nefarious deed...
-
-=head1 SEE ALSO
-
-L<Mojolicious>
-
-=cut
 
 use utf8;
-use Mojo::Base 'Mojolicious';
+use Mojolicious::Lite;
 use List::Util qw( uniq );
 use v5.16;
 
@@ -193,56 +173,53 @@ my %KILLED = (
 );
 my @KILLED = keys %KILLED;
 
-sub startup {
-    my ( $app ) = @_;
-    push @{ $app->renderer->classes }, __PACKAGE__;
+push @{ app->renderer->classes }, __PACKAGE__;
 
-    if ( $ENV{MOJO_REVERSE_PROXY} ) {
-        $app->hook(before_dispatch => sub {
-            my ( $c ) = @_;
-            $c->req->url->base->path( $ENV{MOJO_REVERSE_PROXY} . '/' );
-        });
-    }
-
-    $app->plugin( 'AssetPack',
-        pipes => [qw< Css JavaScript >],
-    );
-    $app->asset->process(
-        'prereq.css' => (
-            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css',
-            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css',
-        ),
-    );
-    $app->asset->process(
-        'prereq.js' => (
-            'http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
-            'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js',
-        ),
-    );
-
-    $app->routes->get( '/' )->name( 'index' )->to( cb => sub {
+if ( $ENV{MOJO_REVERSE_PROXY} ) {
+    app->hook(before_dispatch => sub {
         my ( $c ) = @_;
-        my $killed = $KILLED[ int rand @KILLED ];
-        my $gender = $c->param( 'gender' );
-        my @ranks = $gender eq 'male' ? @MALE_RANKS : $gender eq 'female' ? @FEMALE_RANKS : @ALL_RANKS;
-
-        $c->render(
-            template => 'index',
-            rank => $ranks[ int rand @ranks ],
-            object => $OBJECTS[ int rand @OBJECTS ],
-            action => $ACTIONS[ int rand @ACTIONS ],
-            killed => $killed,
-            killed_source => $KILLED{ $killed }[ int rand @{ $KILLED{ $killed } } ],
-        );
-    } );
-    $app->routes->get( '/list' )->name( 'list' )->to( cb => sub {
-        my ( $c ) = @_;
-        $c->render(
-            template => 'list',
-            killed => \%KILLED,
-        );
-    } );
+        $c->req->url->base->path( $ENV{MOJO_REVERSE_PROXY} . '/' );
+    });
 }
+
+app->plugin( 'AssetPack',
+    pipes => [qw< Css JavaScript >],
+);
+app->asset->process(
+    'prereq.css' => (
+        'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css',
+        'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css',
+    ),
+);
+app->asset->process(
+    'prereq.js' => (
+        'http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+        'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js',
+    ),
+);
+
+app->routes->get( '/' )->name( 'index' )->to( cb => sub {
+    my ( $c ) = @_;
+    my $killed = $KILLED[ int rand @KILLED ];
+    my $gender = $c->param( 'gender' );
+    my @ranks = $gender eq 'male' ? @MALE_RANKS : $gender eq 'female' ? @FEMALE_RANKS : @ALL_RANKS;
+
+    $c->render(
+        template => 'index',
+        rank => $ranks[ int rand @ranks ],
+        object => $OBJECTS[ int rand @OBJECTS ],
+        action => $ACTIONS[ int rand @ACTIONS ],
+        killed => $killed,
+        killed_source => $KILLED{ $killed }[ int rand @{ $KILLED{ $killed } } ],
+    );
+} );
+app->routes->get( '/list' )->name( 'list' )->to( cb => sub {
+    my ( $c ) = @_;
+    $c->render(
+        template => 'list',
+        killed => \%KILLED,
+    );
+} );
 
 1;
 __DATA__

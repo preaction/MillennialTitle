@@ -1,0 +1,12 @@
+[Unit]
+Description=Millennial Title Generator
+After=nginx.service
+
+[Service]
+Environment=MOJO_HOME=/home/doug/app/MillennialTitle
+Environment=MOJO_REVERSE_PROXY=/title
+WorkingDirectory=/home/doug/app/MillennialTitle
+ExecStart=/usr/bin/carton bin/millennial-title prefork -l 'http://*:6032'
+
+[Install]
+WantedBy=multi-user.target

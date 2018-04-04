@@ -1,5 +1,7 @@
+requires "List::Util" => "1.45";
 requires "Mojolicious" => "7";
-requires "perl" => "5.010";
+requires "Mojolicious::Plugin::AssetPack" => "1.45";
+requires "perl" => "5.016";
 
 on 'test' => sub {
   requires "ExtUtils::MakeMaker" => "0";
