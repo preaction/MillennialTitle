@@ -44,51 +44,18 @@ set 'dist_name' => 'MillennialTitle';
     rex deploy
     rex -E vm deploy
 
-Deploy the CPAN Testers web app from CPAN. Do this task after releasing
-a version of CPAN::Testers::Web to CPAN.
-
 =cut
 
-desc "Deploy the web app from CPAN";
+desc "Deploy the web app";
 task deploy =>
     group => 'web',
     sub {
-        run '. ~/.profile; cpanm MillennialTitle';
-        run_task 'deploy_config', on => connection->server;
-    };
-
-=head2 deploy_dev
-
-    rex -E vm deploy_dev
-
-Deploy a pre-release, development version of the web app. Use this to
-install to your dev VM to test things. Will run `dzil build` locally
-to build the tarball, then sync that tarball to the remote and install
-using `cpanm`.
-
-=cut
-
-task deploy_dev =>
-    group => 'web',
-    sub {
-        my $dist_name = get 'dist_name';
-        my $dist;
-        LOCAL {
-            Rex::Logger::info( 'Building dist' );
-            run '/Users/doug/.perlbrew/libs/perl-5.24.0@Statocles/bin/dzil build';
-            my @dists = sort glob "${dist_name}-*.tar.gz";
-            $dist = $dists[-1];
-        };
-
-        Rex::Logger::info( 'Syncing ' . $dist );
-        file '~/dist/' . $dist,
-            source => $dist;
-
-        Rex::Logger::info( 'Installing ' . $dist );
-        run '. ~/.profile; cpanm -v --with-recommends ~/dist/' . $dist;
-        if ( $? ) {
-            say last_command_output;
-        }
+        file 'app/MillennialTitle', ensure => 'directory';
+        file 'app/MillennialTitle/myapp.pl',
+            source => 'myapp.pl';
+        file 'app/MillennialTitle/cpanfile',
+            source => 'cpanfile';
+        run 'cd app/MillennialTitle; carton install';
         run_task 'deploy_config', on => connection->server;
     };
 
@@ -112,8 +79,3 @@ task deploy_config =>
         run 'systemctl --user enable millennial-title.service';
         run 'systemctl --user restart millennial-title.service';
     };
-
-#######################################################################
-
-=head1 SUBROUTINES
-

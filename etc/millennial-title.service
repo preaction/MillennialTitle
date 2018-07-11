@@ -6,7 +6,7 @@ After=nginx.service
 Environment=MOJO_HOME=/home/doug/app/MillennialTitle
 Environment=MOJO_REVERSE_PROXY=/title
 WorkingDirectory=/home/doug/app/MillennialTitle
-ExecStart=/usr/bin/carton bin/millennial-title prefork -l 'http://*:6032'
+ExecStart=/usr/bin/carton exec perl myapp.pl prefork -l 'http://*:6032'
 
 [Install]
 WantedBy=multi-user.target

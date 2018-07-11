@@ -221,6 +221,8 @@ app->routes->get( '/list' )->name( 'list' )->to( cb => sub {
     );
 } );
 
+app->start;
+
 1;
 __DATA__
 
