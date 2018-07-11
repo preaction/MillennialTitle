@@ -170,6 +170,9 @@ my %KILLED = (
     'Credit Cards' => [qw<
         http://business.financialpost.com/personal-finance/debt/millennials-are-ditching-credit-cards-and-its-threatening-the-entire-industry
     >],
+    'Kitchens' => [qw<
+        https://www.forbes.com/sites/andriacheng/2018/06/26/millennials-are-ordering-food-for-delivery-more-but-are-they-killing-the-kitchen-too/
+    >],
 );
 my @KILLED = keys %KILLED;
 
