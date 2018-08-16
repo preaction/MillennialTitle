@@ -173,6 +173,9 @@ my %KILLED = (
     'Kitchens' => [qw<
         https://www.forbes.com/sites/andriacheng/2018/06/26/millennials-are-ordering-food-for-delivery-more-but-are-they-killing-the-kitchen-too/
     >],
+    'Mayonnaise' => [qw<
+        https://www.phillymag.com/articles/2018/08/11/mayonnaise-industry-millennials/
+    >],
 );
 my @KILLED = keys %KILLED;
 
