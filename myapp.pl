@@ -176,6 +176,11 @@ my %KILLED = (
     'Mayonnaise' => [qw<
         https://www.phillymag.com/articles/2018/08/11/mayonnaise-industry-millennials/
     >],
+    'American Cheese' => [qw<
+        https://www.bloomberg.com/news/articles/2018-10-10/american-cheese-is-no-longer-america-s-big-cheese
+        https://nypost.com/2018/10/11/millennials-blamed-for-killing-american-cheese/
+        https://www.esquire.com/food-drink/a23709555/millennials-are-killing-american-cheese/
+    >],
 );
 my @KILLED = keys %KILLED;
 
